@@ -115,12 +115,8 @@ module Rollbar
       end
 
       def add_person_data(js_config, env)
-        person_data = extract_person_data_from_controller(env)
-
-        return if person_data && person_data.empty?
-
         js_config[:payload] ||= {}
-        js_config[:payload][:person] = person_data if person_data
+        js_config[:payload][:person] = extract_person_data_from_controller(env)
       end
 
       def snippet_js_tag(env)
